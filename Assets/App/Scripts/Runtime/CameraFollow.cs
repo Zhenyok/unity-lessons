@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Runtime
+namespace App.Scripts.Runtime
 {
     public class CameraFollow: MonoBehaviour
     {
@@ -11,7 +11,7 @@ namespace Runtime
         [SerializeField] private bool _followByY;
         [SerializeField] private bool _followByZ;
 
-        void Update()
+        void LateUpdate()
         {
             var targetPosition = new Vector3(
                 _followByX ? _target.position.x : transform.position.x,

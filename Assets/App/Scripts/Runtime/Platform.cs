@@ -1,29 +1,26 @@
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+namespace App.Scripts.Runtime
 {
-    [SerializeField] private Transform _target;
-    [SerializeField] private Collider2D _collider;
-    
-    protected bool _isInitiated;
-    
-    public void Init(Transform target)
+    public class Platform : MonoBehaviour
     {
-        _target = target;
-        _isInitiated = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (_isInitiated)
+        [SerializeField] private Transform _target;
+        [SerializeField] private Collider2D _collider;
+    
+        protected bool _isInitiated;
+    
+        public void Init(Transform target)
         {
-            OnUpdatePlatform();
+            _target = target;
+            _isInitiated = true;
         }
-    }
 
-    protected virtual void OnUpdatePlatform()
-    {
-        _collider.enabled = _target.transform.position.y > transform.position.y;
+        void Update()
+        {
+            if (_isInitiated)
+            {
+                _collider.enabled = _target.transform.position.y > transform.position.y;
+            }
+        }
     }
 }

@@ -1,14 +1,12 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-namespace Runtime
+namespace App.Scripts.Runtime
 {
     public class Player : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private float _jumpForce = 10;
-        [SerializeField] private float _groundCheckDistance = 1.1f;
+        [SerializeField] private float _groundCheckDistance = 0.86f;
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private float _moveSpeed;
     
@@ -23,11 +21,11 @@ namespace Runtime
         {
             _lookRight = _rigidbody.transform.localScale;
             
-            _lookLeft =new Vector3(
+            _lookLeft = new Vector3(
                 -_rigidbody.transform.localScale.x, 
                 _rigidbody.transform.localScale.y, 
                 _rigidbody.transform.localScale.z
-                );
+            );
         }
         
         void Update()
@@ -52,13 +50,16 @@ namespace Runtime
 
         private void JumpAction()
         {
-            _isTouchGround = Physics2D.Raycast(
-                    _rigidbody.position, 
-                    Vector2.down, 
-                    _groundCheckDistance, 
-                    _groundMask
-                )
-            ;
+            if (!_isTouchGround)
+            {
+                _isTouchGround = Physics2D.Raycast(
+                        _rigidbody.position, 
+                        Vector2.down, 
+                        _groundCheckDistance, 
+                        _groundMask
+                    )
+                ;
+            }
         
             Debug.DrawRay(_rigidbody.position, Vector2.down * _groundCheckDistance, Color.red);
         
@@ -73,7 +74,7 @@ namespace Runtime
             if (_isTouchGround && _isJump)
             {
                 _rigidbody.AddForce(Vector2.up * _jumpForce , ForceMode2D.Impulse);
-                _isJump = false;
+                _isJump = _isTouchGround = false;
             }
 
             _rigidbody.linearVelocity = new Vector2(_moveDirection * _moveSpeed, _rigidbody.linearVelocity.y);

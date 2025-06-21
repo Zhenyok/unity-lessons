@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using App.Scripts.Core.CustomBases;
 using UnityEngine;
 
 namespace App.Scripts.Runtime.Player
@@ -6,6 +8,7 @@ namespace App.Scripts.Runtime.Player
     {
         [SerializeField] private Transform _target;
         [SerializeField] private Collider2D _collider;
+        [SerializeField] private List<ActionBase> _executeWhenCharacterTouch;
 
         protected bool _isInitiated;
 
@@ -14,6 +17,17 @@ namespace App.Scripts.Runtime.Player
             if (_isInitiated)
             {
                 _collider.enabled = _target.transform.position.y > transform.position.y;
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.TryGetComponent<Character>(out _))
+            {
+                foreach (ActionBase actionBase in _executeWhenCharacterTouch)
+                {
+                    actionBase.Execute();
+                }
             }
         }
 

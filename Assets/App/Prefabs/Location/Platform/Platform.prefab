@@ -125,6 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _collider: {fileID: -5447175765933029128}
+  _executeWhenCharacterTouch:
+  - {fileID: 8472848082044676905}
 --- !u!114 &8472848082044676905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _executeOnStart: 0
-  _executeOnlyOnce: 0
+  _executeOnlyOnce: 1
   _targetRenderer: {fileID: 5990234339685609859}
   _defaultColor: {r: 0.090966575, g: 0.9288739, b: 0, a: 1}
 --- !u!114 &4295305270592485052
@@ -159,6 +161,7 @@ MonoBehaviour:
   _prefabPull:
   - {fileID: 5305278952862495395, guid: 0673a21e6f966e59bb908972d77686d5, type: 3}
   - {fileID: 4298650639929682492, guid: 8eaf0f13f4cdf30a7a9cd8bd0c04e430, type: 3}
+  _skipSpawnChance: 0.7
 --- !u!1 &6866345918099333912
 GameObject:
   m_ObjectHideFlags: 0

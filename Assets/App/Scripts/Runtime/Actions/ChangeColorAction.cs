@@ -8,7 +8,6 @@ namespace App.Scripts.Runtime.Actions
         [SerializeField] private SpriteRenderer _targetRenderer;
         [SerializeField] private Color _defaultColor;
 
-
         public void ChangeColor(Color newColor)
         {
             if (_targetRenderer == null)

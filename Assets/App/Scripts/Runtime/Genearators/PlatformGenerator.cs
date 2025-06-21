@@ -7,78 +7,67 @@ namespace App.Scripts.Runtime.Player
 {
     public class PlatformGenerator : MonoBehaviour
     {
-    [Header("General Settings:")]
-    [Space]
-    
-    [SerializeField] private Transform _target;
-    
-    [Space]
-    [Header("Spawn Settings:")]
-    [Space]
-    
-    [SerializeField] private Platform _platfromPrefab;
-    
-    [SerializeField] private int _stepsCountToSpawn = 4;
-    [SerializeField] private int _stepsCountToDelete = 2;
-    [SerializeField] private float _stepHeight = 1.85f;
-    [SerializeField] private Vector2 _bounds;
-    
-    private Queue<Platform> _spawnedPlatforms;
-    private float _lastPlatformsSpawnedOnPlayerPosition;
-    private float _lastPlatformsDeletedOnPlayerPosition;
-    
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // void Awake()
-    // { 
-    //     
-    // }
+        [Header("General Settings:")] [Space] [SerializeField]
+        private Transform _target;
 
-    private void Start()
-    {
-        _spawnedPlatforms = new Queue<Platform>();
-        _lastPlatformsDeletedOnPlayerPosition = _lastPlatformsSpawnedOnPlayerPosition = _target.position.y;
-    
-        for (int i = 1; i <= _stepsCountToSpawn; i++)
-        {
-            SpawnPlatforms(i);
-        }
-    
-        _bounds = new Vector2(-2.2f, 2.2f);
-    }
+        [Space] [Header("Spawn Settings:")] [Space] [SerializeField]
+        private Platform _platfromPrefab;
 
-    private void SpawnPlatforms(int stepsCount)
-    {
-        float platformPositionX = Random.Range(_bounds.x, _bounds.y);
-        float platformPositionY = _target.position.y + stepsCount * _stepHeight;
-    
-        Vector3 platformPosition = new Vector3(platformPositionX, platformPositionY, _target.position.z);
-        Platform spawnedPlatform = Instantiate(_platfromPrefab, platformPosition, Quaternion.identity, this.transform);
-    
-        spawnedPlatform.Init(_target);
-    
-        _spawnedPlatforms.Enqueue(spawnedPlatform);
-    }
-    
-    void Update()
-    {
-        if (_target.position.y - _lastPlatformsSpawnedOnPlayerPosition > _stepHeight)
+        [SerializeField] private int _stepsCountToSpawn = 4;
+        [SerializeField] private int _stepsCountToDelete = 2;
+        [SerializeField] private float _stepHeight = 1.85f;
+        [SerializeField] private Vector2 _bounds;
+
+        private Queue<Platform> _spawnedPlatforms;
+        private float _lastPlatformsSpawnedOnPlayerPosition;
+        private float _lastPlatformsDeletedOnPlayerPosition;
+
+        private void Start()
         {
-            SpawnPlatforms(_stepsCountToSpawn);
-            _lastPlatformsSpawnedOnPlayerPosition += _stepHeight;
-        }
-    
-        if (_target.position.y - _lastPlatformsDeletedOnPlayerPosition > _stepHeight * _stepsCountToDelete)
-        {
-            var platformToDelete = _spawnedPlatforms.Dequeue();
-        
-            if (platformToDelete && platformToDelete.gameObject)
+            _spawnedPlatforms = new Queue<Platform>();
+            _lastPlatformsDeletedOnPlayerPosition = _lastPlatformsSpawnedOnPlayerPosition = _target.position.y;
+
+            for (int i = 1; i <= _stepsCountToSpawn; i++)
             {
-                Destroy(platformToDelete.gameObject);
+                SpawnPlatforms(i);
             }
-    
-            _lastPlatformsDeletedOnPlayerPosition += _stepHeight;
+
+            _bounds = new Vector2(-2.2f, 2.2f);
         }
-    }
+
+        private void SpawnPlatforms(int stepsCount)
+        {
+            float platformPositionX = Random.Range(_bounds.x, _bounds.y);
+            float platformPositionY = _target.position.y + stepsCount * _stepHeight;
+
+            Vector3 platformPosition = new Vector3(platformPositionX, platformPositionY, _target.position.z);
+            Platform spawnedPlatform =
+                Instantiate(_platfromPrefab, platformPosition, Quaternion.identity, this.transform);
+
+            spawnedPlatform.Init(_target);
+
+            _spawnedPlatforms.Enqueue(spawnedPlatform);
+        }
+
+        private void Update()
+        {
+            if (_target.position.y - _lastPlatformsSpawnedOnPlayerPosition > _stepHeight)
+            {
+                SpawnPlatforms(_stepsCountToSpawn);
+                _lastPlatformsSpawnedOnPlayerPosition += _stepHeight;
+            }
+
+            if (_target.position.y - _lastPlatformsDeletedOnPlayerPosition > _stepHeight * _stepsCountToDelete)
+            {
+                var platformToDelete = _spawnedPlatforms.Dequeue();
+
+                if (platformToDelete && platformToDelete.gameObject)
+                {
+                    Destroy(platformToDelete.gameObject);
+                }
+
+                _lastPlatformsDeletedOnPlayerPosition += _stepHeight;
+            }
+        }
     }
 }

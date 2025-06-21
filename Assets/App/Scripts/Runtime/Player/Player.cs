@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Scripts.Runtime
+namespace App.Scripts.Runtime.Player
 {
     public class Player : MonoBehaviour
     {
@@ -67,13 +67,17 @@ namespace App.Scripts.Runtime
             {
                 _isJump = true;
             }
+            else if (Input.GetKeyUp(KeyCode.W))
+            {
+                _isJump = false;
+            }
         }
 
         private void FixedUpdate()
         {
             if (_isTouchGround && _isJump)
             {
-                _rigidbody.AddForce(Vector2.up * _jumpForce , ForceMode2D.Impulse);
+                _rigidbody.linearVelocity = Vector2.up * _jumpForce;
                 _isJump = _isTouchGround = false;
             }
 

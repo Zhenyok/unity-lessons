@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Scripts.Runtime
+namespace App.Scripts.Runtime.Player
 {
     public class Platform : MonoBehaviour
     {

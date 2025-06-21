@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace App.Scripts.Runtime
+namespace App.Scripts.Runtime.Player
 {
     public class PlatformGenerator : MonoBehaviour
     {

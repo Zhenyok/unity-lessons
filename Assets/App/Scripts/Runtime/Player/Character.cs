@@ -6,11 +6,14 @@ namespace App.Scripts.Runtime.Player
     {
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private float _jumpForce = 10;
-        [SerializeField] private float _groundCheckDistance = 0.86f;
+        [SerializeField] private float _groundCheckDistance = 0.82f;
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private float _moveSpeed;
 
-        public bool IsTouchGround { get => _isTouchGround; }
+        public bool IsTouchGround
+        {
+            get => _isTouchGround;
+        }
 
         private bool _isJump = false;
         private bool _isTouchGround = false;
@@ -82,6 +85,7 @@ namespace App.Scripts.Runtime.Player
             {
                 _rigidbody.linearVelocity = Vector2.up * _jumpForce;
                 _isJump = false;
+                _isTouchGround = false;
             }
 
             _rigidbody.linearVelocity = new Vector2(_moveDirection * _moveSpeed, _rigidbody.linearVelocity.y);

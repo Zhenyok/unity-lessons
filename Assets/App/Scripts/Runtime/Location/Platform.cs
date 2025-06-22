@@ -23,18 +23,17 @@ namespace App.Scripts.Runtime.Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.TryGetComponent<Character>(out Character character))
+            if (other.gameObject.TryGetComponent<Character>(out var character))
             {
                 foreach (ActionBase actionBase in _executeWhenCharacterTouch)
                 {
-
                     if (actionBase is ChangeColorAction)
                     {
                         if (character.IsTouchGround && _collider.enabled)
                         {
                             actionBase.Execute();
                         }
-                        
+
                         continue;
                     }
 

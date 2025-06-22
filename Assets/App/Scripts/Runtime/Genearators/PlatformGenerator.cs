@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.Runtime.Actions;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -63,7 +64,11 @@ namespace App.Scripts.Runtime.Player
 
                 if (platformToDelete && platformToDelete.gameObject)
                 {
-                    Destroy(platformToDelete.gameObject);
+                    if (platformToDelete.gameObject.TryGetComponent(out DestroyObjectAction destroyAction))
+                    {
+                        destroyAction.DestroyGameObject = platformToDelete.gameObject;
+                        destroyAction.Execute();
+                    }
                 }
 
                 _lastPlatformsDeletedOnPlayerPosition += _stepHeight;

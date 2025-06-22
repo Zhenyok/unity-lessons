@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2791896448956791607}
   - component: {fileID: 8472848082044676905}
   - component: {fileID: 4295305270592485052}
+  - component: {fileID: 8692298637193150508}
   m_Layer: 11
   m_Name: Platform
   m_TagString: Untagged
@@ -162,6 +163,20 @@ MonoBehaviour:
   - {fileID: 5305278952862495395, guid: 0673a21e6f966e59bb908972d77686d5, type: 3}
   - {fileID: 4298650639929682492, guid: 8eaf0f13f4cdf30a7a9cd8bd0c04e430, type: 3}
   _skipSpawnChance: 0.7
+--- !u!114 &8692298637193150508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141470292547233159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef61ded48934bf4b01cbe8dc098dd57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _executeOnStart: 0
+  _executeOnlyOnce: 0
 --- !u!1 &6866345918099333912
 GameObject:
   m_ObjectHideFlags: 0

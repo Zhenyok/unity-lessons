@@ -222,7 +222,7 @@ MonoBehaviour:
   _executeOnStart: 0
   _executeOnlyOnce: 0
   _targetRenderer: {fileID: 208790701}
-  _defaultColor: {r: 1, g: 0.5231693, b: 0.26038522, a: 1}
+  _defaultColor: {r: 1, g: 0.5231693, b: 0.26038522, a: 0}
 --- !u!1 &232516930
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232516931}
   m_Layer: 0
-  m_Name: Camera Flow
+  m_Name: CameraFlowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 240147911}
   m_Layer: 0
-  m_Name: 'Generator '
+  m_Name: GeneratorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1024473187}
   _jumpForce: 10
-  _groundCheckDistance: 0.86
+  _groundCheckDistance: 0.82
   _groundMask:
     serializedVersion: 2
     m_Bits: 2048

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using App.Scripts.Core.CustomBases;
+using App.Scripts.Runtime.Actions;
 using UnityEngine;
 
 namespace App.Scripts.Runtime.Player
@@ -22,10 +23,21 @@ namespace App.Scripts.Runtime.Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.TryGetComponent<Character>(out _))
+            if (other.gameObject.TryGetComponent<Character>(out Character character))
             {
                 foreach (ActionBase actionBase in _executeWhenCharacterTouch)
                 {
+
+                    if (actionBase is ChangeColorAction)
+                    {
+                        if (character.IsTouchGround && _collider.enabled)
+                        {
+                            actionBase.Execute();
+                        }
+                        
+                        continue;
+                    }
+
                     actionBase.Execute();
                 }
             }

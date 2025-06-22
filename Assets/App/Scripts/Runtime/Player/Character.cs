@@ -10,6 +10,8 @@ namespace App.Scripts.Runtime.Player
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private float _moveSpeed;
 
+        public bool IsTouchGround { get => _isTouchGround; }
+
         private bool _isJump = false;
         private bool _isTouchGround = false;
         private float _moveDirection;
